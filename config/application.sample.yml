@@ -1,7 +1,7 @@
 defaults: &defaults
   instagram:
     client_id: YOUR_ID
-    client_secrent: YOUR_SECRET
+    client_secret: YOUR_SECRET
 
 development:
   <<: *defaults
