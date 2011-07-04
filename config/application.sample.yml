@@ -1,0 +1,13 @@
+defaults: &defaults
+  instagram:
+    client_id: YOUR_ID
+    client_secrent: YOUR_SECRET
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
