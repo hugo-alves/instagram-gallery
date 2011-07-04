@@ -18,14 +18,24 @@ describe Instagram do
       it "should have a user" do
         media_object.id.should_not be nil
       end
-      it "should have a caption that can be empty" do
-        media_object.caption.present?.should_not be false
-      end
+
       it "should have a link" do
         media_object.link.should_not be nil
       end
       it "should have a filter" do
         media_object.filter.should_not be nil
+      end
+      
+      describe "#caption" do        
+        # The caption object can somtimes be nil. Hence the :try
+        # This is just to describe the caption object, not test against nil values
+
+        it "should have a text" do
+          media_object.try(:caption).text.should_not be nil
+        end
+        it "should have a timestamp" do
+          media_object.try(:caption).created_time.should_not be nil
+        end
       end
       
       describe "#user" do
