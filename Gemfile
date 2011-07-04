@@ -9,7 +9,8 @@ group :development, :test do
   gem 'growl'
   gem 'cucumber-rails'
   gem 'capybara'
-  gem 'rspec-rails', '>= 2.0.1'
+  gem 'rspec-rails'
+  gem 'mocha'
   
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'

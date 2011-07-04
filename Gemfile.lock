@@ -93,6 +93,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mocha (0.9.12)
     multi_json (0.0.5)
     multipart-post (1.1.2)
     nokogiri (1.5.0)
@@ -156,7 +157,8 @@ DEPENDENCIES
   guard-rspec
   instagram
   jquery-rails
+  mocha
   rails (= 3.0.7)
   rb-fsevent
-  rspec-rails (>= 2.0.1)
+  rspec-rails
   settingslogic
