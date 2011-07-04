@@ -11,10 +11,14 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails', '~> 2.0.1'
   gem 'mocha'
-  gem 'webmock', '~> 1.6.4'
-  gem 'vcr'
   
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
   gem 'guard-livereload'
+end
+
+group :test, :cucumber do
+  gem 'launchy'
+  gem 'webmock', '~> 1.6.4'
+  gem 'vcr'
 end

@@ -10,6 +10,9 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+      
+    when /^the popular gallery page/
+      popular_gallery_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
