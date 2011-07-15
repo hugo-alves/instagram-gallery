@@ -2,6 +2,8 @@ defaults: &defaults
   instagram:
     client_id: YOUR_ID
     client_secret: YOUR_SECRET
+  cache:
+    expires: <%= 5.minutes %>
 
 development:
   <<: *defaults

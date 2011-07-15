@@ -1,0 +1,63 @@
+@import url('reset.min.css');
+
+body {
+  background: #f2f2f2;
+  overflow-x: auto;
+}
+
+#gallery {
+  text-align: center;
+}
+
+.thumbnail {
+  display: inline-block;
+  margin: 10px;
+}
+
+.thumbnail img {
+  border: 1px solid #e8e8e8;
+}
+
+.thumbnail:hover {
+  box-shadow: rgba(0,0,0,0.8) 0px 0px 10px;
+}
+
+.thumbnail.selected {
+  box-shadow: yellow 0px 0px 10px;
+  -webkit-box-shadow: yellow 0px 0px 10px;
+}
+
+.filtered .thumbnail,
+.filtered .filter {
+  opacity: 0.2;
+}
+
+.filtered .thumbnail.highlight,
+.filtered .filter.highlight {
+  opacity: 1;
+}
+
+.expanded {
+  background: rgba(0,0,0,0.7);
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.expanded img {
+  margin: 40px;
+}
+
+.expanded .map {
+  height: 200px;
+  width: 800px;
+}
+
+.filter, .filter a {
+  color: #fff;
+}
+
+
+

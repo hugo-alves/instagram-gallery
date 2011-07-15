@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe GalleryHelper do
+describe FeedsHelper do
 end

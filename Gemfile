@@ -4,6 +4,8 @@ gem 'rails', '3.0.7'
 gem 'jquery-rails'
 gem 'settingslogic'
 gem 'instagram'
+gem 'dalli'
+gem 'compass'
 
 group :development, :test do
   gem 'growl'

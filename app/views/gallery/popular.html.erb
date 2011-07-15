@@ -1,5 +1,0 @@
-<% @popular_photos.each do |photo| %>
-  <figure id="photo_<%= photo.id %>" class="photo thumb">
-    <%= image_tag photo.images.thumbnail.url.to_s %>
-  </figure>
-<% end %>

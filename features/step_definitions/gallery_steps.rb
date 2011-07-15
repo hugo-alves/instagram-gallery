@@ -11,5 +11,13 @@ Given /^the Instagram "([^"]*)" api returns (\d+) results$/ do |request_type, nu
 end
 
 Then /^I should see (\d+) media objects$/ do |num|
-  page.should have_css('.photo', :count => num.to_i)
+  page.should have_css('.thumbnail', :count => num.to_i)
+end
+
+When /^I click on a thumbnail$/ do
+  click_link("view expanded")
+end
+
+Then /^I should an expanded thumbnail$/ do
+  page.should have_css('.expanded', :count => 1)
 end

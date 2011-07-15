@@ -2,13 +2,24 @@
 <html>
 <head>
   <title>Instagram</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :jquery, :backbone, :defaults %>
-  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'screen' %>
+  <%= tag(:meta, :name => "username", :content => "true") if session[:access_token] %>
+  <%= tag(:meta, :name => "viewport", :content => "initial-scale=1.0; maximum-scale=1.0;") %>
 </head>
 <body>
 
+<div id="nav" class="dynamic">
+  <h1>Instagram Gallery</h1>
+  <ul>
+    <li><a href="#"><strong>Popular</strong></a></li>
+    <li><%= link_to new_oauth_path, :title => "Your Photos" do %><strong>Your Photos</strong><% end %></li>
+  </ul>
+</div>
+
 <%= yield %>
+
+<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+<%= javascript_include_tag :jquery, :backbone, :app, "application.js" %>
 
 </body>
 </html>
