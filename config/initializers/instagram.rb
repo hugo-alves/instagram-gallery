@@ -1,4 +1,4 @@
 Instagram.configure do |config|
-  config.client_id = Settings.instagram.client_id
-  config.client_secret = Settings.instagram.client_secret
+  config.client_id = ENV['INSTAGRAM_CLIENT_ID'] || INSTAGRAM_CLIENT_ID
+  config.client_secret = ENV['INSTAGRAM_CLIENT_SECRET'] || INSTAGRAM_CLIENT_SECRET
 end
