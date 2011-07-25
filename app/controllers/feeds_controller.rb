@@ -2,7 +2,6 @@ class FeedsController < ApplicationController
   layout false
   
   def show
-    session[:access_token] = nil
     if session[:access_token]
       client = Instagram.client(:access_token => session[:access_token])
       render :json => client.user_recent_media
