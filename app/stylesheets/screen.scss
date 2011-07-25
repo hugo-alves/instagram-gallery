@@ -3,11 +3,18 @@
 @import "compass/css3";
 
 body {
-  background: #222;
-  color: #f2f2f2;
+  background: #3e362f image-url('bg.png');
+  color: #fff;
   font-family: sans-serif; // Helvetica on Mac, Arial on PC
   &.expanded {
     overflow: hidden;
+  }
+}
+
+a {
+  color: inherit;
+  &:hover {
+    text-decoration: none;
   }
 }
 
@@ -17,101 +24,105 @@ h1, h2, h3 {
   font-weight: 400;
 }
 
-h1 {
-  @include text-shadow(black 0px -1px 0px);
-  font-size: 32px;
-}
-
 .dynamic, #gallery {
   width: 860px;
   .venti & {
     width: 100%;
   }
-  .grande & {
-    width: 1205px;
-  }
 }
 
 #nav {
   @include pie-clearfix;
-  border-top: 10px solid #000;
-  margin: 0px auto;
-  padding: 20px 0;
+  border-top: 10px solid white;
+  
+  .container {
+    @include pie-clearfix;
+    margin: 60px auto 20px;
+  }
   
   h1 {
-    @include replace-text-with-dimensions('instagram.png');
-    @include inline-block;
+    @include replace-text-with-dimensions('logo.instagram.png');
+    float: left;
+    display: block;
     margin-left: 10px;
   }
   
   ul {
     @include float_right;
-    @include inline-block-list(5px);
-    padding: 10px 5px 0 0;
-    li a {
-      @include inline-block;
-      @include border-radius(5px);
-      background: rgba(0,0,0,0.2);
-      border: 1px solid #000;
-      strong {
-        @include inline-block;
-        @include border-radius(4px);
-        border-color: #292929;
-        border-style: solid;
-        border-width: 1px 0px 0px 1px;
-        padding: 7px 10px;
-        color: #999;
-        font-size: 14px;
-        text-decoration: none;
+    padding: 28px 0px 0 0;
+    width: 280px;
+    li {
+      float: left;
+      a {
+        background-image: image-url('nav.png');
+        background-repeat: no-repeat;
+        display: block;
+        float: left;
+        height: 20px;
+        text-indent: -9999px;
+        width: 135px;
+        &#nav-popular_photos {
+          background-position: -153px 0;
+          &:hover {
+            background-position: -153px -32px;
+          }
+          &:active {
+            background-position: -153px -31px;
+          }
+          &.active {
+            background-position: -153px -66px;
+          }
+        }
+        &#nav-your_photos {
+          background-position: 0 0;
+          margin-right: 20px;
+          width: 110px;
+          &:hover {
+            background-position: 0 -32px;
+          }
+          &:active {
+            background-position: 0 -31px;
+          }
+          &.active {
+            background-position: 0 -62px;
+          }
+        }
       }
-      &:hover {
-        @include transition;
-        background: rgba(0,0,0,0.5);
-        strong { color: #fff; }
-      }
     }
-  }
-  
-  .venti & {
-    h1 {
-      background-position: 50% 0;
-      width: 100%;
-    }
-    ul {
-      display: none;
-      margin-top: 10px;
-      text-align: center;
-      width: 380px;
-    }
-  }
-  
+  }  
 }
 
 #gallery {
   text-align: center;
   margin: 0px auto;
-  padding-bottom: 100px;
-  
+  padding-bottom: 30px;
+
   .thumbnail {
     @include inline-block;
+    background: transparent;
     margin: 5px;
+    height: 160px;
+    width: 160px;
     
     img {
-      border: 5px solid #222;
+      border: 5px solid transparent;
     }
     
     &.selected img {
-      border: 5px solid yellow;
+      border: 5px solid yellow !important;
     }
     
-    &:hover img, &.selected:hover img {
-      border: 5px solid #444;
+    &:hover img {
+      border: 5px solid #2a7ba5;
     }
     
   }
 
   &.filtered .thumbnail {
-    display: none;
+    background: rgba(0,0,0,0.1);
+    img {
+      display: none;
+    }
   }
 
   &.filtered .filter a {
@@ -122,18 +133,21 @@ h1 {
     color: #fff;
   }
 
-  &.filtered .thumbnail.highlight {
-    @include inline-block;
+  &.filtered .thumbnail.highlight img {
+    display: block;
+  }
+  
+  &.fixed {
+    padding-bottom: 70px;
   }
   
 }
-
 
 #gallery .standard-resolution {
   background: #000;
   min-height: 400px;
   .photo {
-    padding: 20px 20px 0px;
+    padding: 20px 0px 0px;
     img {
       max-width: 610px;
       width: 100%;
@@ -141,7 +155,7 @@ h1 {
   }
   .user {
     @include pie-clearfix;
-    padding: 20px 20px 0px;
+    padding: 20px 0px 0px;
     text-align: left;
     .avatar {
       @include float_left;
@@ -155,52 +169,202 @@ h1 {
 }
 
 .expanded {
-  background: rgba(0,0,0,0.7) image-url('bg.expanded.png');
-  text-align: center;
+  background: rgba(0,0,0,0.7);
   position: absolute;
-  top: 0;
+  top: 0px;
   left: 0;
-  padding: 40px 0 0 0;
+  padding: 0 0 0 0;
   width: 100%;
+  
+  .standard-resolution {
+    padding-top: 60px;
+  }
+  
   .container {
     @include pie-clearfix;
     margin: 0px auto;
-    width: 610px;
+    position: relative;
+    width: 695px;
+    .navigation {
+      #nextPhoto, #prevPhoto {
+        background-color: #000;
+        background-image: image-url('bg.photo-nav.png');
+        background-position: 15px 50%;
+        background-repeat: no-repeat;
+        display: block;
+        height: 610px;
+        position: absolute;
+        left: 0px;
+        text-indent: -9999px;
+        width: 42px;
+        &:hover {
+          background-color: #222;
+        }
+      }
+      #nextPhoto {
+        background-position: 102.5% 50%;
+        left: auto;
+        right: 0px;
+      }
+    }
   }
   .photo {
-    background: #000;
-    clear: both;
+    background: black;
     height: 610px;
-    width: 610px;
+    text-align: center;
     img {
       height: 610px;
       width: 610px;
     }
   }
   .user .container {
-    background: #000;
+    @include pie-clearfix;
+    background: white image-url('bg.user.png') no-repeat;
+    padding: 10px 0;
     .avatar {
-      height: 100px;
-      width: 100px;
+      float: left;
+      height: 70px;
+      width: 70px;
+      margin-left: 10px;
     }
+    
+    .profile {
+      border-right: 1px solid #ccc;
+      color: #222;
+      float: left;
+      padding: 15px 20px 0 20px;
+      height: 55px;
+      h3 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+    }
+    
+    .filter {
+      border-right: 1px solid #ccc;
+      padding: 5px 0 0 20px;
+      color: #222;
+      float: left;
+      height: 65px;
+      width: 150px;
+      h6 {
+        color: #2c6f90;
+        font-size: 12px;
+        padding-bottom: 5px;
+      }
+      h3 {
+        font-weight: bold;
+        padding-bottom: 5px;
+      }
+      a {
+        color: #999;
+        font-size: 12px;
+      }
+    }
+    
+    .links {
+      padding: 20px 40px 0 20px;
+      color: #222;
+      float: right;
+      
+      a {
+        @include opacity(0.5);
+        float: left;
+        display: block;
+        &:hover {
+          @include opacity(1);
+          @include transition;
+        }
+      }
+      
+      .instagram {
+        @include replace-text-with-dimensions('bg.user.link.png');
+      } 
+      .map {
+        @include replace-text-with-dimensions('bg.user.map.png');
+        margin-right: 20px;
+      }
+    }
+  }
+  .close {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+  }
+  
+  .expandedMap {
+    border: 10px solid black;
+    position: absolute;
+    height: 200px;
+    top: 0;
+    left: 0;
+    width: 500px;
   }
   
 }
-.expanded .map {
-  height: 200px;
-  width: 800px;
-}
-
 .filter, .filter a {
   color: #fff;
 }
 
 #filters-list {
-  @include inline-block-list;
-  background: #000;
-  position: fixed;
-  bottom: 20px;
-  .venti & {
+  @include pie-clearfix;
+  background: image-url('bg.filters.png') no-repeat;
+  height: 42px;
+  margin: 20px 0 0 13px;
+  overflow: hidden;
+  padding-left: 115px;
+  text-align: left;
+  width: 720px;
+  li a {
+    @include inline-block;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 15px 7px 14px 7px;
+    text-decoration: none;
+    text-shadow: black 0px -1px 0px;
+    &:hover { cursor: pointer; }
+    &:active {
+      position: relative;
+      top: 1px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  .expanded & {
     display: none;
   }
+  
+  .fixed & {
+    bottom: 20px;
+    position: fixed;
+  }
+  
+}
+
+#footer {
+  clear: both;
+  margin: 0 0 40px 0;
+  text-align: center;
+  p {
+    font-size: 14px;
+    font-weight: 300;
+    padding-bottom: 20px;
+    &.dev {
+      font-size: 12px;
+      color: #85817d;
+    }
+    &.fork a {
+      @include inline-block;
+      @include border-radius(5px);
+      background: rgba(255,255,255,0.1);
+      font-size: 12px;
+      padding: 5px 20px;
+      text-decoration: none;
+    }
+  }
+  
 }

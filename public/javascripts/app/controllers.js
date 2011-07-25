@@ -1,21 +1,8 @@
 $(function() {
-  
-  /* --------------------------------
-     COLLECTIONS:
-      - PhotoList
-      - FilteredPhotosList
-      - FilterList
-  ----------------------------------- */
-  
+
   window.PhotoList = Backbone.Collection.extend({
     model : Photo,
-    url : function() {
-      if( this.getUsername() ) {
-        return '/feeds/user';
-      } else {
-        return '/feeds/popular';
-      }
-    },
+    url : '/feed',
     initialize : function() {
       _.bindAll(this, 'viewablePhotos', 'getUsername');
     },
@@ -48,7 +35,7 @@ $(function() {
     },
     viewablePhotos : function() {
       return _.select(this.models, function(model) {
-        return $( model.view.el ).is(":visible");
+        return $( model.view.el ).find("img").is(":visible");
       });
     }
   });

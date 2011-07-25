@@ -17,9 +17,10 @@ $(function() {
   
   window.Photo = Backbone.Model.extend({
     initialize : function() {
-      if(this.get('caption') == null) {
+      if(this.get('caption') === null) {
         this.set({ caption : { text : 'no caption' } });
       }
+
       this.filterObj = Filters.addPhoto({ photo : this });
       _.bindAll(this, 'collectionIndex');
     },

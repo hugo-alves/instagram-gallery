@@ -1,6 +1,5 @@
 Instagram::Application.routes.draw do  
-  match '/feeds/popular' => 'feeds#popular', :as => :feeds_popular
-  match '/feeds/user' => 'feeds#user', :as => :feeds_user
+  match '/feed' => 'feeds#show', :as => :feed
   
   match '/oauth/new' => 'oauth#new', :as => :new_oauth
   match '/oauth/callback' => 'oauth#callback', :as => :oauth_callback

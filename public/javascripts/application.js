@@ -2,13 +2,6 @@ $(function() {
   
   window.Photos = new PhotoList;
   window.Filters = new FilterList;
-
-  /* --------------------------------
-     APPLICATION:
-      - Workspace (Routes)
-      - ApplicationView
-  ----------------------------------- */
-  
   window.Workspace = Backbone.Router.extend({
     routes: {
       ''                  : "resetUI",
@@ -22,55 +15,31 @@ $(function() {
       var filters = ids.split(":");
       if ( (ids) && (filters) ) {        
         $( App.el ).addClass('filtered');
+        
+        // If the amount of filtered filters is equal to the
+        // amount of filters, than just reset the view
+        if( filters.length >= Filters.models.length ) {
+          window.location.hash = '#/';
+          $("html").stop().scrollTo( "#nav", 800 );
+        }
+        
+        // Loop through filters
         _.each(filters, function(filter_name) {
           var filter = Filters.getByName(filter_name);
-          if( filter ) {
-            _.each(filter.getPhotos(), function(photo) { 
-              photo.view.highlight();
-            });
+          if (filter) {
+            var photos = filter.getPhotos();
+            if( filter ) {
+              _.each(photos, function(photo) { 
+                photo.view.highlight();
+              });
+            }
+            $( filter.view.el ).addClass('highlight');
           }
-          $( filter.view.el ).addClass('highlight');
-        });
-      }
-    }
-  });
-  
-  window.ApplicationView = Backbone.View.extend({
-    tagName : 'section',
-    initialize : function() {
-      _.bindAll(this, 'resetUI');
-      this.routes = new Workspace;
-      Photos.fetch({
-        success : function() {
-          App.render();
-          Backbone.history.start({ pushState : true, root : '#/' });
-        }
-      });
-    },
-    render : function() {
-      $(this.el).appendTo('body').attr('id', 'gallery').empty();
-      
-      if( $("body").hasClass('venti') ) {
-        _.each(Photos.models, function(model) { 
-          new PhotoStandardResolutionView({ model : model }).render();
         });
       } else {
-        _.each(Photos.models, function(model) { 
-          new PhotoThumbnailView({ model : model }).render();
-        });
+        window.location.hash = '#/';
+        $("html").stop().scrollTo( "#nav", 800 );
       }
-      _.each(Filters.models, function(filter) {
-        new FilterView({ model : filter }).render();
-      });      
-      return this;
-    },
-    resetUI : function() {
-      if( App.expandedView ) {
-        App.expandedView.remove();
-      }
-      $( App.el ).removeClass('filtered');
-      $(".thumbnail.highlight, .filter.highlight").removeClass("highlight");
-      return this;
     }
   });
   window.App = new ApplicationView;
@@ -122,6 +91,7 @@ $(function() {
         right();
         break;
       case keyCodes.ENTER:
+        e.preventDefault();
         expandPhoto();
         break;
       case keyCodes.SPACE:
@@ -174,40 +144,5 @@ $(function() {
       galleryKeyboardNav(e);
     }
   });
-  
-  
-  var dynamicLayout = _.throttle(function(e) {
-    var width = $(window).width();
-
-    var resetBody = function() {
-      return $("body")
-        .removeClass('grande')
-        .removeClass('tall')
-        .removeClass('venti');
-    }
-
-    if ( width >= 1225 ) {
-      if( !$("body").hasClass('grande') ) {
-        App.render();
-      }
-      return;
-    } else if ( width >= 900 ) {
-      if ( !$("body").hasClass('tall') ) {
-        resetBody().addClass('tall');
-        App.render();
-        return;
-      }
-    } else if ( width <= 500 ) {
-      if ( !$("body").hasClass('venti') ) {
-        resetBody().addClass('venti');
-        App.render();
-        return;
-      }
-    }
     
-  }, 100);
-  
-  dynamicLayout();
-  $(window).resize(dynamicLayout);
-
 });
