@@ -12,8 +12,8 @@
   <div class="container dynamic">
     <h1>Instagram Gallery</h1>
     <ul>
-      <li><%= link_to "Your Photos", new_oauth_path, :title => "Your Photos", :id => "nav-your_photos" %></li>
-      <li><a href="#" id="nav-popular_photos" title="Popular Photos" class="active">Popular Photos</a></li>
+      <li><%= link_to "Your Photos", new_oauth_path, :title => "Your Photos", :id => "nav-your_photos", :class => ("active" if session[:access_token]) %></li>
+      <li><%= link_to "Popular Photos", destroy_oauth_path, :title => "Popular Photos", :id => "nav-popular_photos", :class => ("active" unless session[:access_token])  %>
     </ul>
   </div>
 </div>
