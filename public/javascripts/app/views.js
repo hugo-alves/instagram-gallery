@@ -263,9 +263,10 @@ $(function() {
   
   window.UserView = Backbone.View.extend({
     className : 'user',
-    template : _.template('<div class="container"><img src="<%= user.profile_picture %>" alt="<%= user.username %>" class="avatar" /> <div class="profile"><h3><%= user.full_name || user.username %></h3><% if ( user.full_name ) { %><h4><%= user.username %></h4><% } %></div> <div class="filter"><h6>Filter:</h6><h3><%= filter %></h3> <a href="/#/filters/<%= filter %>">View All</a></div> <div class="links"> <% if ( location ) { %><a href="#" class="map">View on Map</a><% } %><a href="<%= link %>" class="instagram">View on Instagram</a></div></div>'),
+    template : _.template('<div class="container"><img src="<%= user.profile_picture %>" alt="<%= user.username %>" class="avatar" /> <div class="profile"><h3><%= user.full_name || user.username %></h3><% if ( user.full_name ) { %><h4><%= user.username %></h4><% } %></div> <div class="filter"><h6>Filter:</h6><h3><%= filter %></h3> <a href="#" class="view-all-filter">View All</a></div> <div class="links"> <% if ( location ) { %><a href="#" class="map">View on Map</a><% } %><a href="<%= link %>" class="instagram">View on Instagram</a></div></div>'),
     events : {
-      'click .map' : 'showMap'
+      'click .map' : 'showMap',
+      'click .view-all-filter' : 'viewFilter'
     },
     initialize : function() {
       this.model = this.options.model;
@@ -280,6 +281,10 @@ $(function() {
     showMap : function(e) {
       e.preventDefault();
       App.expandedView.navigation.openMap();
+    },
+    viewFilter : function() {
+      App.routes.navigate('filters/' + this.model.get('filter'), true);
+      return this;
     }
   });
   
