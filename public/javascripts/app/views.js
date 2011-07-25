@@ -153,11 +153,11 @@ $(function() {
   
   window.PhotoExpandedNavigationView = Backbone.View.extend({
     className : 'navigation',
-    template : _.template('<a href="#" id="nextPhoto">Next</a> <a href="#" id="prevPhoto">Prev</a>'),
+    template : _.template('<a href="#" id="closePhoto">Close</a><a href="#" id="nextPhoto">Next</a> <a href="#" id="prevPhoto">Prev</a>'),
     events : {
       "click #nextPhoto"       : "nextPhoto",
       "click #prevPhoto"       : "prevPhoto",
-      "click #viewMap"   : "openMap",
+      "click #closePhoto"      : "closePhoto"
     },
     initialize : function() {
       this.model = App.expandedView.model;
@@ -191,7 +191,10 @@ $(function() {
         }
       }
       return this;
-    }    
+    },
+    closePhoto : function() {
+      App.expandedView.close();
+    }
   });
   
   window.PhotoMapView = Backbone.View.extend({

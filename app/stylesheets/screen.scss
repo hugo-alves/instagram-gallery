@@ -177,7 +177,7 @@ h1, h2, h3 {
   width: 100%;
   
   .standard-resolution {
-    padding-top: 60px;
+    padding-top: 80px;
   }
   
   .container {
@@ -205,6 +205,13 @@ h1, h2, h3 {
         background-position: 102.5% 50%;
         left: auto;
         right: 0px;
+      }
+      #closePhoto {
+        @include replace-text-with-dimensions('bg.photo.close.png');
+        display: block;
+        position: absolute;
+        right: 42px;
+        top: -40px;
       }
     }
   }
