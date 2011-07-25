@@ -92,9 +92,7 @@ $(function() {
       return this;
     }
   });
-  
-  /*  */
-  
+    
   window.PhotoExpandedView = Backbone.View.extend({
     className : 'expanded',
     events : {
@@ -206,15 +204,20 @@ $(function() {
     render : function() {
       var location = this.latlng;
       var el = this.el;
-      $(el).appendTo(this.appendView.el).gmap({ 
+      $(el)
+        .appendTo(this.appendView.el)
+        .gmap({ 
           center: location, 
           callback : function () {
             $(el).gmap('addMarker', { 'position' : location });
           }
-        }).position({
+        })
+        .append( $('<img src="/images/map.arrow.png" width="20" height="20" class="map-arrow" />') )
+        .position({
           at : 'center bottom',
           of : '.map',
-          my : 'right bottom'
+          my : 'right top',
+          offset : '40px 20px'
         });
       return this;
     },
@@ -254,7 +257,7 @@ $(function() {
   
   window.UserView = Backbone.View.extend({
     className : 'user',
-    template : _.template('<div class="container"><img src="<%= user.profile_picture %>" alt="<%= user.username %>" class="avatar" /> <div class="profile"><h3><%= user.full_name || user.username %></h3><% if ( user.full_name ) { %><h4><%= user.username %></h4><% } %></div> <div class="filter"><h6>Filter:</h6><h3><%= filter %></h3> <a href="/#/filters/<%= filter %>">View All</a></div> <div class="links"><a href="<%= link %>" class="instagram">View on Instagram</a></div></div>'),
+    template : _.template('<div class="container"><img src="<%= user.profile_picture %>" alt="<%= user.username %>" class="avatar" /> <div class="profile"><h3><%= user.full_name || user.username %></h3><% if ( user.full_name ) { %><h4><%= user.username %></h4><% } %></div> <div class="filter"><h6>Filter:</h6><h3><%= filter %></h3> <a href="/#/filters/<%= filter %>">View All</a></div> <div class="links"> <% if ( location ) { %><a href="#" class="map">View on Map</a><% } %><a href="<%= link %>" class="instagram">View on Instagram</a></div></div>'),
     events : {
       'click .map' : 'showMap'
     },
@@ -264,7 +267,7 @@ $(function() {
     },
     render : function() {
       $( this.el )
-        .html( this.template(this.model.toJSON()) )
+        .html( this.template( this.model.toJSON()) )
         .appendTo( this.modelView.el );
       return this;
     },

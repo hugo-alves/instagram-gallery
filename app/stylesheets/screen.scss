@@ -299,7 +299,17 @@ h1, h2, h3 {
     height: 200px;
     top: 0;
     left: 0;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
     width: 500px;
+    
+    .map-arrow {
+      position: absolute;
+      right: 19px;
+      bottom: -29px;
+      z-index: 1000;
+    }
+    
   }
   
 }
