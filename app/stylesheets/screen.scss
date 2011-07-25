@@ -109,7 +109,7 @@ h1, h2, h3 {
     }
     
     &.selected img {
-      border: 5px solid yellow !important;
+      border: 5px solid #dfa300 !important;
     }
     
     &:hover img {
@@ -198,6 +198,7 @@ h1, h2, h3 {
         text-indent: -9999px;
         width: 42px;
         &:hover {
+          @include transition;
           background-color: #222;
         }
       }
@@ -208,10 +209,15 @@ h1, h2, h3 {
       }
       #closePhoto {
         @include replace-text-with-dimensions('bg.photo.close.png');
+        background-color: #000;
         display: block;
         position: absolute;
-        right: 42px;
-        top: -40px;
+        right: 43px;
+        top: -42px;
+        &:hover {
+          @include transition;
+          background-color: #222;
+        }
       }
     }
   }
@@ -274,17 +280,15 @@ h1, h2, h3 {
       padding: 20px 40px 0 20px;
       color: #222;
       float: right;
-      
       a {
         @include opacity(0.5);
         float: left;
         display: block;
-        &:hover {
+        &:hover, &.active {
           @include opacity(1);
           @include transition;
         }
       }
-      
       .instagram {
         @include replace-text-with-dimensions('bg.user.link.png');
       } 
@@ -301,11 +305,12 @@ h1, h2, h3 {
   }
   
   .expandedMap {
-    border: 10px solid black;
+    @include box-shadow(rgba(0,0,0,0.9) 0px 0px 10px);
+    border: 10px solid #dfa300;
     position: absolute;
     height: 200px;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
     overflow-x: visible !important;
     overflow-y: visible !important;
     width: 500px;

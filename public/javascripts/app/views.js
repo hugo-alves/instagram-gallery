@@ -185,9 +185,11 @@ $(function() {
         if( this.mapView ) {
           this.mapView.close();
           this.mapView = null;
+          $('a.map').removeClass("active");
         } else {
           this.mapView = new PhotoMapView({ appendView : App.expandedView.photo, location : this.model.get('location') });
           this.mapView.render();
+          $('a.map').addClass("active");
         }
       }
       return this;
@@ -217,10 +219,11 @@ $(function() {
         })
         .append( $('<img src="/images/map.arrow.png" width="20" height="20" class="map-arrow" />') )
         .position({
-          at : 'center bottom',
           of : '.map',
-          my : 'right top',
-          offset : '40px 20px'
+          at : 'left top',
+          my : 'right bottom',
+          offset : '55px -20px',
+          collision : 'none'
         });
       return this;
     },
