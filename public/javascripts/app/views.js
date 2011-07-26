@@ -349,7 +349,7 @@ $(function() {
   
   window.LoadingView = Backbone.View.extend({
     className : 'loader',
-    template : _.template('<img src="/images/loader.big.gif" /> <p>Loading images...</p>'),
+    template : _.template('<img src="/images/loader.big.gif" />'),
     initialize : function() {
       _.bindAll(this, 'close', 'render');
       return this;
@@ -361,7 +361,7 @@ $(function() {
       return this;
     },
     close : function() {
-      $( this.el ).remove();
+      $( this.el ).fadeOut('fast', function() { $(this).remove() });
       $("body").removeClass('loading').addClass('loaded');
       return this;
     }
