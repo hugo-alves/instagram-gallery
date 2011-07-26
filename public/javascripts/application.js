@@ -104,7 +104,7 @@ $(function() {
   var expandedKeyboardNav = function(e) {
     var closeExpanded = function() {
       App.expandedView.close();
-    }
+    }    
     switch(e.which) {
       case keyCodes.DOWN:
         e.preventDefault();
@@ -134,6 +134,10 @@ $(function() {
         break;
       case keyCodes.M:
         App.expandedView.openMap(e);
+        break;
+      case 86:
+        App.expandedView.openExternal(e);
+        break;
     }
   }
   
