@@ -290,12 +290,14 @@ $(function() {
     showMap : function(e) {
       e.preventDefault();
       App.expandedView.navigation.openMap();
+      return this;
     },
     viewFilter : function() {
       App.routes.navigate('filters/' + this.model.get('filter'), true);
       return this;
     },
-    openExternal : function() {
+    openExternal : function(e) {
+      e.preventDefault();
       window.open(this.model.get('link'), 'instagram');
       return this;
     }
