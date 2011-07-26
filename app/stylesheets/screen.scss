@@ -2,6 +2,8 @@
 @import "compass/utilities";
 @import "compass/css3";
 
+$default-transition-duration: 0.5s;
+
 body {
   background: #3e362f image-url('bg.png');
   color: #fff;
@@ -31,9 +33,37 @@ h1, h2, h3 {
   }
 }
 
+.loading {
+  #nav, #gallery, #footer {
+    @include opacity(0);
+  }
+}
+
+.loaded {
+  #nav, #gallery, #footer {
+    @include transition;
+    @include opacity(1);
+  }
+}
+
+.loader {
+  padding: 50px 0;
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  z-index: 1000;
+  width: 100%;
+  p {
+    color: #fff;
+    padding: 20px 0;
+  }
+}
+
+
 #nav {
   @include pie-clearfix;
   border-top: 10px solid white;
+  
   
   .container {
     @include pie-clearfix;
@@ -106,6 +136,12 @@ h1, h2, h3 {
     
     img {
       border: 5px solid transparent;
+    }
+    
+    &:hover img, &.selected img {
+      @include transition;
+      -webkit-transform: scale(1.06);
+      -moz-transform: scale(1.06);
     }
     
     &.selected img {

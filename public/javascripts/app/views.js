@@ -1,9 +1,12 @@
 $(function() {
   
+  
   window.ApplicationView = Backbone.View.extend({
     initialize : function() {
       _.bindAll(this, 'resetUI');
       this.routes = new Workspace;
+      this.loading = new LoadingView;
+      this.loading.render();
       Photos.fetch({
         success : function() {
           App.render();
@@ -18,7 +21,8 @@ $(function() {
       });
       _.each(Filters.models, function(filter) {
         new FilterView({ model : filter }).render();
-      });      
+      });
+      this.loading.close();
       return this;
     },
     resetUI : function() {
@@ -46,7 +50,7 @@ $(function() {
     render : function() {
       $(this.el).append(this.template({ 
         id : this.model.get('id'), 
-        thumbnail : this.model.get('images').thumbnail, 
+        thumbnail : this.model.get('images').thumbnail,
         filter : this.model.get('filter'),
         caption : this.model.get('caption')
       }))
@@ -341,6 +345,27 @@ $(function() {
      		offset: '100%'
      	});
     }
-  });  
+  });
+  
+  window.LoadingView = Backbone.View.extend({
+    className : 'loader',
+    template : _.template('<img src="/images/loader.big.gif" /> <p>Loading images...</p>'),
+    initialize : function() {
+      _.bindAll(this, 'close', 'render');
+      return this;
+    },
+    render : function() {
+      $("body")
+        .addClass('loading')
+        .append( $( this.el ).html( this.template ) );
+      return this;
+    },
+    close : function() {
+      $( this.el ).remove();
+      $("body").removeClass('loading').addClass('loaded');
+      return this;
+    }
+  });
+  
   
 });
