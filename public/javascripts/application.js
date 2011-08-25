@@ -32,6 +32,7 @@ $(function() {
               _.each(photos, function(photo) { 
                 photo.view.highlight();
               });
+              _.first(Photos.viewablePhotos()).view.select().scroll();
             }
             $( filter.view.el ).addClass('highlight');
           }
