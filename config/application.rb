@@ -9,9 +9,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Instagram
   class Application < Rails::Application
-    config.action_view.javascript_expansions[:jquery] = %w(vendor/jquery.min.js vendor/jquery-ui.min.js vendor/jquery.ui.map.min.js vendor/jquery.scrollTo-min.js vendor/jquery.waypoints.min.js)
-    config.action_view.javascript_expansions[:backbone] = %w(vendor/underscore.min.js vendor/backbone.min.js)
-    config.action_view.javascript_expansions[:app] = %w(app/models.js app/controllers.js app/views.js app/helpers.js)
+    config.autoload_paths += %w(#{config.root}/app/javascripts)
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
   end

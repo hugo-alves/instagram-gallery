@@ -1,0 +1,18 @@
+package_assets: on
+compress_assets: on
+
+javascripts:
+  vendor:
+    - public/javascripts/vendor/jquery.min.js
+    - public/javascripts/vendor/jquery-ui.min.js 
+    - public/javascripts/vendor/jquery.ui.map.min.js
+    - public/javascripts/vendor/jquery.scrollTo-min.js
+    - public/javascripts/vendor/jquery.waypoints.min.js
+    - public/javascripts/vendor/underscore.min.js
+    - public/javascripts/vendor/backbone.min.js
+  app:
+    - public/javascripts/app/helpers.js
+    - public/javascripts/app/models.js
+    - public/javascripts/app/controllers.js
+    - public/javascripts/app/views.js
+    - public/javascripts/app/application.js

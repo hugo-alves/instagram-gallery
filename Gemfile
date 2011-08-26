@@ -1,13 +1,16 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.0.9'
 gem 'jquery-rails'
 gem 'settingslogic'
 gem 'instagram'
 gem 'dalli'
 gem 'compass'
+gem 'json'
+gem 'barista'
 
 group :development, :test do
+  gem 'jammit'
   gem 'growl'
   gem 'cucumber-rails'
   gem 'capybara'

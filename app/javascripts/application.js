@@ -55,7 +55,7 @@ $(function() {
 
     var expandPhoto = function() {
       if( thumbnail ) {
-        thumbnail.view.showExpanded();
+        //thumbnail.view.showExpanded();
       }
     }
         
