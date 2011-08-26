@@ -1,5 +1,8 @@
 package_assets: on
 compress_assets: on
+gzip_assets: off
+
+package_path: javascripts/min
 
 javascripts:
   vendor:
